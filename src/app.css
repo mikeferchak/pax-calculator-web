@@ -25,7 +25,8 @@
 		--color-background-oklch: 98.5 0 0;
 		--color-background: oklch(var(--color-background-oklch));
 		--color-glass-background: oklch(0% 0 0 / 0.7);
-		--color-glass-foreground: oklch(100% 0 0 / 0.8);
+		--color-glass-foreground: oklch(100% 0 0 / 0.7);
+		--color-glass-foreground-active: oklch(100% 0 0);
 		--color-glass-border: oklch(0% 0 0 / 0.8);
 		--color-border: oklch(50% 0 0);
 
@@ -35,7 +36,8 @@
 			--color-background-oklch: 20.5% 0 0; /* neutral-900 */
 			--color-background: oklch(var(--color-background-oklch));
 			--color-glass-background: oklch(30% 0 0 / 0.7);
-			--color-glass-foreground: oklch(100% 0 0 / 0.9);
+			--color-glass-foreground: oklch(100% 0 0 / 0.7);
+			--color-glass-foreground-active: oklch(100% 0 0 / 1);
 			--color-glass-border: oklch(100% 0 0 / 0.1);
 			--color-border: oklch(50% 0 0);
 		}
@@ -52,4 +54,60 @@ body {
 	font-family: var(--font-sans);
 	font-size: 16px;
 	line-height: 1;
+}
+
+/* View Transitions */
+@view-transition {
+	navigation: auto;
+}
+
+/* Only animate main content, keep nav static */
+::view-transition-old(main-content),
+::view-transition-new(main-content) {
+	animation-duration: 0.5s;
+	animation-timing-function: ease-out;
+}
+
+/* Direction-aware transitions using CSS custom properties */
+::view-transition-old(main-content) {
+	animation-name: var(--slide-out-animation, slide-out-left);
+}
+
+::view-transition-new(main-content) {
+	animation-name: var(--slide-in-animation, slide-in-right);
+}
+
+/* Keep footer static */
+::view-transition-old(footer),
+::view-transition-new(footer) {
+	animation: none;
+}
+
+/* Slide animations */
+@keyframes slide-out-left {
+	to {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+}
+
+@keyframes slide-in-right {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+}
+
+@keyframes slide-out-right {
+	to {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+}
+
+@keyframes slide-in-left {
+	from {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
 }
