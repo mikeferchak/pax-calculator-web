@@ -7,7 +7,7 @@
 
 	// Define tab order for spatial transitions
 	const tabOrder = ['/compare', '/list', '/settings'];
-	
+
 	let currentTabIndex = $state(0);
 	let direction = $state('right');
 
@@ -17,16 +17,14 @@
 		// Determine direction based on tab order
 		const fromPath = navigation.from?.url.pathname || '/compare';
 		const toPath = navigation.to?.url.pathname || '/compare';
-		
+
 		const fromIndex = tabOrder.indexOf(fromPath);
 		const toIndex = tabOrder.indexOf(toPath);
-		
+
 		// Only apply spatial transitions for known tabs
 		if (fromIndex !== -1 && toIndex !== -1) {
 			direction = toIndex > fromIndex ? 'right' : 'left';
 			currentTabIndex = toIndex;
-			
-			console.log(`Transitioning from ${fromPath} (${fromIndex}) to ${toPath} (${toIndex}) - direction: ${direction}`);
 		}
 
 		return new Promise((resolve) => {
@@ -38,7 +36,7 @@
 				document.documentElement.style.setProperty('--slide-out-animation', 'slide-out-right');
 				document.documentElement.style.setProperty('--slide-in-animation', 'slide-in-left');
 			}
-			
+
 			document.startViewTransition(async () => {
 				resolve();
 				await navigation.complete;

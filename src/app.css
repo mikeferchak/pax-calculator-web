@@ -64,7 +64,7 @@ body {
 /* Only animate main content, keep nav static */
 ::view-transition-old(main-content),
 ::view-transition-new(main-content) {
-	animation-duration: 0.5s;
+	animation-duration: 0.3s;
 	animation-timing-function: ease-out;
 }
 
