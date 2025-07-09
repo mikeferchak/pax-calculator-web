@@ -71,13 +71,18 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 
 ## Development Commands
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run check` - Run TypeScript and Svelte checks
-- `npm run check:watch` - Run checks in watch mode
-- `npm run lint` - Run ESLint and Prettier checks
-- `npm run format` - Format code with Prettier
+- `bun run dev` - Start development server
+- `bun run build` - Build for production
+- `bun run preview` - Preview production build locally
+- `bun run check` - Run TypeScript and Svelte checks
+- `bun run check:watch` - Run checks in watch mode
+- `bun run lint` - Run ESLint and Prettier checks
+- `bun run format` - Format code with Prettier
+
+## Tooling Guidelines
+
+- **Package Manager**: Use `bun` instead of `npm` for all package management
+- **Package Runner**: Use `bunx` instead of `npx` for running packages
 
 ## Architecture
 
