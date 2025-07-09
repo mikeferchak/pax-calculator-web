@@ -19,16 +19,33 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 ## Development Values
 
 ### Code Quality
-- **Type Safety**: Leverage TypeScript strictly - prefer explicit types over `any`
+- **Type Safety**: TypeScript in strict mode - prefer explicit types over `any`
 - **Modern Patterns**: Use Svelte 5 runes (`$state`, `$derived`, `$effect`) over legacy reactive patterns
 - **Consistency**: Follow established patterns in the codebase - check existing components before creating new ones
 - **Testing**: Write tests for complex logic and user interactions
 
+### Code Style
+- **Destructuring**: Always destructure objects when possible
+- **Immutability**: Avoid unnecessary mutations - prefer immutable updates
+- **Iteration**: Use `map` over `forEach` for functional iteration
+- **State Management**: Use stores for state management rather than top-down prop passing
+- **Comments**: Comment frequently but concisely - explain the why, not the what
+- **Naming**: Function and variable names should be descriptive and clear
+- **DRY Principle**: Don't repeat yourself - extract common logic into reusable functions
+- **Separation of Concerns**: Clear division of responsibility between modules and functions
+- **Pre-commit Cleanup**: Before every commit, clean up logging, unused variables/imports, and run linting
+
 ### User Experience
 - **Performance**: Prioritize fast load times and smooth interactions
 - **Accessibility**: Ensure keyboard navigation, screen reader support, and proper semantic HTML
-- **Progressive Enhancement**: Core functionality should work without JavaScript
 - **Mobile-First**: Design for mobile devices, then enhance for desktop
+- **JavaScript Requirement**: The PAX calculator will be entirely client-side with offline functionality, so JavaScript is a strict requirement with a fallback message for users without it enabled
+
+### Performance Guidelines
+- **Efficient Rendering**: Avoid unnecessary repaints and effects
+- **Polling**: Avoid infinite polling - use event-driven updates instead
+- **Minimalism**: Focus on functional and visual minimalism
+- **Animations**: Use animations to make state changes less jarring, not for decoration
 
 ### Target Audience & Context
 - **Primary Users**: Adults aged 18-70 involved in racing activities
@@ -42,6 +59,15 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 - **Maintainability**: Write code that future developers (including yourself) can easily understand
 - **Documentation**: Document complex logic and architectural decisions
 - **Incremental**: Build features iteratively with frequent testing and validation
+
+### Git Workflow & Quality Standards
+- **Testing Requirements**: All tests must pass locally before committing
+- **Test Coverage**: Full test coverage required before committing
+- **Branch Strategy**: All new features must be developed in their own branch
+- **Main Branch Protection**: Direct pushes to main are forbidden
+- **Pull Request Requirements**: PRs can only be merged when CI is passing remotely
+- **Version Management**: All merged PRs trigger an automatic version bump
+- **Commit Strategy**: PRs are always squashed, and changelog is compiled from commits
 
 ## Development Commands
 
