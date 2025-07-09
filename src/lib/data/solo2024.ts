@@ -12,7 +12,7 @@ const streetClasses: SoloClassGroup = {
 	description: 'Street Category - Minimal modifications allowed',
 	classes: [
 		{ code: 'SS', name: 'Super Street', paxIndex: 0.844, isActive: true },
-		{ code: 'AS', name: 'A Street', paxIndex: 0.830, isActive: true },
+		{ code: 'AS', name: 'A Street', paxIndex: 0.83, isActive: true },
 		{ code: 'BS', name: 'B Street', paxIndex: 0.821, isActive: true },
 		{ code: 'CS', name: 'C Street', paxIndex: 0.806, isActive: true },
 		{ code: 'DS', name: 'D Street', paxIndex: 0.806, isActive: true },
@@ -31,9 +31,9 @@ const streetTouringClasses: SoloClassGroup = {
 	classes: [
 		{ code: 'STR', name: 'Street Touring R', paxIndex: 0.824, isActive: true },
 		{ code: 'STS', name: 'Street Touring S', paxIndex: 0.809, isActive: true },
-		{ code: 'STU', name: 'Street Touring U', paxIndex: 0.830, isActive: true },
+		{ code: 'STU', name: 'Street Touring U', paxIndex: 0.83, isActive: true },
 		{ code: 'STX', name: 'Street Touring X', paxIndex: 0.814, isActive: true },
-		{ code: 'STH', name: 'Street Touring H', paxIndex: 0.810, isActive: true }
+		{ code: 'STH', name: 'Street Touring H', paxIndex: 0.81, isActive: true }
 	]
 };
 
@@ -87,7 +87,7 @@ const modifiedClasses: SoloClassGroup = {
 	name: 'Modified',
 	description: 'Modified Category - Unlimited modifications',
 	classes: [
-		{ code: 'AM', name: 'A Modified', paxIndex: 1.000, isActive: true },
+		{ code: 'AM', name: 'A Modified', paxIndex: 1.0, isActive: true },
 		{ code: 'BM', name: 'B Modified', paxIndex: 0.978, isActive: true },
 		{ code: 'CM', name: 'C Modified', paxIndex: 0.897, isActive: true },
 		{ code: 'DM', name: 'D Modified', paxIndex: 0.923, isActive: true },
@@ -103,7 +103,7 @@ const specClasses: SoloClassGroup = {
 	description: 'Spec Category - Single-make classes',
 	classes: [
 		{ code: 'SSC', name: 'Solo Spec Coupe', paxIndex: 0.803, isActive: true },
-		{ code: 'FSAE', name: 'Formula SAE', paxIndex: 0.980, isActive: true },
+		{ code: 'FSAE', name: 'Formula SAE', paxIndex: 0.98, isActive: true },
 		{ code: 'KM', name: 'Kart Modified', paxIndex: 0.947, isActive: true }
 	]
 };
@@ -118,7 +118,7 @@ const supplementalClasses: SoloClassGroup = {
 		{ code: 'XU', name: 'Xtreme Unlimited', paxIndex: 0.867, isActive: true },
 		{ code: 'XA', name: 'Xtreme A', paxIndex: 0.849, isActive: true },
 		{ code: 'XB', name: 'Xtreme B', paxIndex: 0.856, isActive: true },
-		{ code: 'EVX', name: 'Electric Vehicle eXperimental', paxIndex: 0.830, isActive: true }
+		{ code: 'EVX', name: 'Electric Vehicle eXperimental', paxIndex: 0.83, isActive: true }
 	]
 };
 
@@ -147,10 +147,13 @@ const allClasses = [
 	...camClasses.classes
 ];
 
-const classesByCode = allClasses.reduce((acc, soloClass) => {
-	acc[soloClass.code] = soloClass;
-	return acc;
-}, {} as Record<string, typeof allClasses[0]>);
+const classesByCode = allClasses.reduce(
+	(acc, soloClass) => {
+		acc[soloClass.code] = soloClass;
+		return acc;
+	},
+	{} as Record<string, (typeof allClasses)[0]>
+);
 
 export const solo2024: PaxIndex = {
 	year: 2024,

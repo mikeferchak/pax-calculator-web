@@ -1,16 +1,11 @@
 /**
  * PAX Calculator Functions
- * 
+ *
  * Core calculation logic for converting times between racing classes
  * using PAX (Performance Adjustment eXchange) indices.
  */
 
-import type { 
-	SoloClass, 
-	PaxCalculationResult, 
-	PaxIndex, 
-	PaxValidationResult 
-} from './types.js';
+import type { SoloClass, PaxCalculationResult, PaxIndex, PaxValidationResult } from './types.js';
 
 /**
  * Calculate PAX-adjusted time from input class to output class
@@ -33,10 +28,10 @@ export function calculatePaxTime(
 
 	// Calculate output time using PAX formula
 	const outputTime = inputTime * (inputClass.paxIndex / outputClass.paxIndex);
-	
+
 	// Calculate difference (positive = slower, negative = faster)
 	const timeDifference = outputTime - inputTime;
-	
+
 	return {
 		inputTime,
 		inputClass,
@@ -58,14 +53,14 @@ export function parseTimeString(timeString: string): number {
 	}
 
 	const cleaned = timeString.trim();
-	
+
 	// Check for minutes:seconds.milliseconds format (1:05.123)
 	const minutesMatch = cleaned.match(/^(\d+):(\d{1,2})\.(\d{1,3})$/);
 	if (minutesMatch) {
 		const [, minutes, seconds, milliseconds] = minutesMatch;
 		const totalSeconds = parseInt(minutes) * 60 + parseInt(seconds);
 		const ms = parseInt(milliseconds.padEnd(3, '0'));
-		return totalSeconds + (ms / 1000);
+		return totalSeconds + ms / 1000;
 	}
 
 	// Check for hours:minutes:seconds.milliseconds format (1:05:12.123)
@@ -74,7 +69,7 @@ export function parseTimeString(timeString: string): number {
 		const [, hours, minutes, seconds, milliseconds] = hoursMatch;
 		const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
 		const ms = parseInt(milliseconds.padEnd(3, '0'));
-		return totalSeconds + (ms / 1000);
+		return totalSeconds + ms / 1000;
 	}
 
 	// Check for decimal seconds format (65.123)
@@ -82,7 +77,7 @@ export function parseTimeString(timeString: string): number {
 	if (decimalMatch) {
 		const [, seconds, milliseconds] = decimalMatch;
 		const ms = parseInt(milliseconds.padEnd(3, '0'));
-		return parseInt(seconds) + (ms / 1000);
+		return parseInt(seconds) + ms / 1000;
 	}
 
 	// Check for whole seconds format (65)
@@ -110,19 +105,14 @@ export function formatTime(seconds: number): string {
  * Get time difference display string with appropriate sign
  */
 export function formatTimeDifference(difference: number): string {
-	const sign = difference > 0 ? '+' : '';
-	return `${sign}${difference.toFixed(3)}`;
+	return `${difference > 0 ? '+' : ''}${difference.toFixed(3)}`;
 }
 
 /**
  * Find a class by code in the given PAX index
  */
-export function findClassByCode(
-	classCode: string, 
-	paxIndex: PaxIndex
-): SoloClass | null {
-	const { classesByCode } = paxIndex;
-	return classesByCode[classCode] || null;
+export function findClassByCode(classCode: string, paxIndex: PaxIndex): SoloClass | undefined {
+	return paxIndex.classesByCode[classCode];
 }
 
 /**
@@ -130,8 +120,8 @@ export function findClassByCode(
  */
 export function getActiveClasses(paxIndex: PaxIndex): SoloClass[] {
 	return paxIndex.classGroups
-		.flatMap(group => group.classes)
-		.filter(soloClass => soloClass.isActive);
+		.flatMap((group) => group.classes)
+		.filter((soloClass) => soloClass.isActive);
 }
 
 /**
@@ -181,7 +171,9 @@ export function validatePaxIndex(paxIndex: PaxIndex): PaxValidationResult {
 
 			// Validate PAX index range (typical range is 0.7-1.0)
 			if (soloClass.paxIndex < 0.7 || soloClass.paxIndex > 1.0) {
-				warnings.push(`PAX index outside typical range for ${soloClass.code}: ${soloClass.paxIndex}`);
+				warnings.push(
+					`PAX index outside typical range for ${soloClass.code}: ${soloClass.paxIndex}`
+				);
 			}
 
 			if (soloClass.paxIndex <= 0) {
@@ -191,9 +183,10 @@ export function validatePaxIndex(paxIndex: PaxIndex): PaxValidationResult {
 	}
 
 	// Validate classesByCode lookup matches classes
-	const lookupCount = Object.keys(paxIndex.classesByCode).length;
-	if (lookupCount !== classCount) {
-		errors.push(`Class lookup count mismatch: ${lookupCount} vs ${classCount}`);
+	if (Object.keys(paxIndex.classesByCode).length !== classCount) {
+		errors.push(
+			`Class lookup count mismatch: ${Object.keys(paxIndex.classesByCode).length} vs ${classCount}`
+		);
 	}
 
 	return {
@@ -208,13 +201,11 @@ export function validatePaxIndex(paxIndex: PaxIndex): PaxValidationResult {
 /**
  * Easter egg function - check for special time values
  */
-export function checkEasterEgg(timeString: string): string | null {
-	const cleaned = timeString.trim();
-	
+export function checkEasterEgg(timeString: string): string | undefined {
 	// Check for "NICE" time (69.420)
-	if (cleaned === '69.420') {
+	if (timeString.trim() === '69.420') {
 		return 'NICE';
 	}
 
-	return null;
+	return undefined;
 }

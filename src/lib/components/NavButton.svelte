@@ -5,7 +5,8 @@
 
 	let isActive = $derived(page.url.pathname === href);
 
-	let activeClasses = 'text-[var(--color-glass-foreground-active)] drop-shadow-[0_0_8px_oklch(100%_0_0_/_0.3)]';
+	let activeClasses =
+		'text-[var(--color-glass-foreground-active)] drop-shadow-[0_0_8px_oklch(100%_0_0_/_0.3)]';
 </script>
 
 <a

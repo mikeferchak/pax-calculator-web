@@ -11,6 +11,7 @@ This is a SvelteKit application called "pax-calculator-web" built with TypeScrip
 A PAX calculator for autocross and racing time comparison. PAX (Performance Adjustment eXchange) is a handicap system that allows fair comparison of lap times across different vehicle classes.
 
 ### Core Functionality
+
 - **Direct Comparison Mode**: Convert a time from one class to another using PAX adjustments
 - **List Mode**: Compare multiple times/classes simultaneously
 - **PAX Index**: Officially updated annually from https://www.solotime.info/pax/
@@ -19,12 +20,14 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 ## Development Values
 
 ### Code Quality
+
 - **Type Safety**: TypeScript in strict mode - prefer explicit types over `any`
 - **Modern Patterns**: Use Svelte 5 runes (`$state`, `$derived`, `$effect`) over legacy reactive patterns
 - **Consistency**: Follow established patterns in the codebase - check existing components before creating new ones
 - **Testing**: Write tests for complex logic and user interactions
 
 ### Code Style
+
 - **Destructuring**: Always destructure objects when possible
 - **Immutability**: Avoid unnecessary mutations - prefer immutable updates
 - **Iteration**: Use `map` over `forEach` for functional iteration
@@ -34,20 +37,26 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 - **DRY Principle**: Don't repeat yourself - extract common logic into reusable functions
 - **Separation of Concerns**: Clear division of responsibility between modules and functions
 - **Pre-commit Cleanup**: Before every commit, clean up logging, unused variables/imports, and run linting
+- **Null vs Undefined**: Always use `undefined` instead of `null` for optional values
+- **Variable Usage**: Don't create a `const` if it's only referenced in one place - inline it instead
+- **Formatting**: Always run `bun run format` (Prettier) after every code change
 
 ### User Experience
+
 - **Performance**: Prioritize fast load times and smooth interactions
 - **Accessibility**: Ensure keyboard navigation, screen reader support, and proper semantic HTML
 - **Mobile-First**: Design for mobile devices, then enhance for desktop
 - **JavaScript Requirement**: The PAX calculator will be entirely client-side with offline functionality, so JavaScript is a strict requirement with a fallback message for users without it enabled
 
 ### Performance Guidelines
+
 - **Efficient Rendering**: Avoid unnecessary repaints and effects
 - **Polling**: Avoid infinite polling - use event-driven updates instead
 - **Minimalism**: Focus on functional and visual minimalism
 - **Animations**: Use animations to make state changes less jarring, not for decoration
 
 ### Target Audience & Context
+
 - **Primary Users**: Adults aged 18-70 involved in racing activities
 - **Primary Device**: Mobile phones (tablets and desktops are secondary)
 - **Environment**: Limited cell coverage locations - **all core functionality must work offline**
@@ -55,12 +64,14 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 - **Accessibility Scope**: Vision and motor accessibility are not primary concerns (users can operate racing vehicles)
 
 ### Development Philosophy
+
 - **Simplicity**: Prefer simple, readable solutions over clever abstractions
 - **Maintainability**: Write code that future developers (including yourself) can easily understand
 - **Documentation**: Document complex logic and architectural decisions
 - **Incremental**: Build features iteratively with frequent testing and validation
 
 ### Git Workflow & Quality Standards
+
 - **Testing Requirements**: All tests must pass locally before committing
 - **Test Coverage**: Full test coverage required before committing
 - **Branch Strategy**: All new features must be developed in their own branch
@@ -87,6 +98,7 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 ## Architecture
 
 ### Project Structure
+
 - `/src/routes/` - SvelteKit file-based routing
   - `+layout.svelte` - Root layout with Footer component
   - `+page.svelte` - Homepage (currently placeholder)
@@ -96,6 +108,7 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 - `/static/` - Static assets
 
 ### Key Technologies
+
 - **SvelteKit**: Full-stack framework with file-based routing
 - **Svelte 5**: Uses new runes syntax (`$props()`, `{@render children()}`)
 - **TypeScript**: Strict type checking enabled
@@ -104,12 +117,14 @@ A PAX calculator for autocross and racing time comparison. PAX (Performance Adju
 - **Lucide Svelte**: Icon library
 
 ### Component Architecture
+
 - Layout uses `{@render children()}` syntax for slot rendering
 - Components follow Svelte 5 patterns with runes
 - Footer component is included in the root layout
 - Header component exists but is currently commented out
 
 ### Build Configuration
+
 - Uses Vite with SvelteKit plugin and Tailwind CSS plugin
 - TypeScript configuration extends SvelteKit defaults
 - ESLint with Prettier integration for code quality

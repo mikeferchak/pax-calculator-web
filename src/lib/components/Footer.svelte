@@ -1,6 +1,6 @@
 <script>
 	import NavBar from './NavBar.svelte';
-	
+
 	let { style = '' } = $props();
 </script>
 

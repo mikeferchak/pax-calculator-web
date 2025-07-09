@@ -1,6 +1,6 @@
 /**
  * PAX Calculator Data Types
- * 
+ *
  * Based on the native app structure, these types define the core data models
  * for PAX calculations across Solo and ProSolo events.
  */
@@ -70,7 +70,7 @@ export interface PaxIndexMetadata {
 	/** Available indices */
 	indices: PaxIndex[];
 	/** Currently selected index */
-	currentIndex: PaxIndex | null;
+	currentIndex: PaxIndex | undefined;
 	/** Last check for updates */
 	lastUpdateCheck: string;
 	/** Whether updates are available */
@@ -86,15 +86,15 @@ export interface UserPreferences {
 	/** Preferred view mode */
 	viewMode: ViewMode;
 	/** Selected input class */
-	inputClass: string | null;
+	inputClass: string | undefined;
 	/** Selected output class */
-	outputClass: string | null;
+	outputClass: string | undefined;
 	/** Last entered time */
 	lastTime: string;
 	/** Whether to auto-update to latest index */
 	autoUpdate: boolean;
 	/** Pinned index version (if not auto-updating) */
-	pinnedVersion: string | null;
+	pinnedVersion: string | undefined;
 }
 
 /**
